@@ -4,3 +4,6 @@ venv/
 README.md
 pytest.ini
 .pytest_cache
+unit_tests/
+integration_tests/
+.github/
