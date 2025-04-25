@@ -2,10 +2,14 @@
 FROM debian:12-slim AS build 
 
 RUN apt-get update && \
-    apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
+    apt-get install --no-install-suggests --no-install-recommends --yes \
+        python3-venv=3.11.2-1+b1 \
+        gcc=4:12.2.0-14 \
+        libpython3-dev=3.11.2-1 && \
     python3 -m venv /venv && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
 
 COPY requirements.txt /requirements.txt
 
