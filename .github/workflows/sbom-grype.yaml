@@ -1,9 +1,6 @@
 name: Analyse SCA (SBOM + Grype)
 
-on:
-  push:
-    branches:
-      - exercice-issue
+on: [push]
 
 jobs:
   sbom-analysis:

@@ -1,9 +1,6 @@
 name: Build, Push and Scan Docker Image
 
-on:
-  push:
-    branches:
-      - exercice-issue
+on: [push]
 
 jobs:
   build-and-push:
