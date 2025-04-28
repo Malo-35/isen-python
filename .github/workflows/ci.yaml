@@ -19,7 +19,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t malo350stern/isen-python:dev-${{ github.sha }} -t europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleImage:dev-${{ github.sha }} .
+          docker build -t malo350stern/isen-python:dev-${{ github.sha }} -t europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleimage:dev-${{ github.sha }} .
 
       - name: Push Docker image
         run: |
