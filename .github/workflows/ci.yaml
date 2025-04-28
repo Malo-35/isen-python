@@ -61,3 +61,5 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.REPOSITORYOFPART5 }}' # Replace with the name of your GitHub Actions secret
+      - name: yamlsdkl
+        uses: gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
