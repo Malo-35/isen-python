@@ -1,0 +1,48 @@
+name: Analyse SCA (SBOM + Grype)
+
+on: [push]
+
+jobs:
+  sbom-analysis:
+    name: Generate SBOM and Scan with Grype
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate SBOM (syft-json)
+        uses: anchore/sbom-action@v0
+        with:
+          format: syft-json
+          output-file: sbom.syft.json
+          source: dir:.
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.syft.json
+
+      - name: Scan SBOM with Grype
+        uses: anchore/scan-action@v3
+        with:
+          sbom: sbom.syft.json
+          output-format: table
+          fail-build: false
+
+      - name: Upload Grype scan report
+        uses: actions/upload-artifact@v4
+        with:
+          name: grype-report
+          path: grype-results.json
