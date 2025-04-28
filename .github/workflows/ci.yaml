@@ -62,4 +62,4 @@ jobs:
         with:
           credentials_json: '${{ secrets.REPOSITORYOFPART5 }}' # Replace with the name of your GitHub Actions secret
       - name: yamlsdkl
-        uses: gcloud auth configure-docker europa-west1-docker.pkg.dev --quiet
+        run: gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
