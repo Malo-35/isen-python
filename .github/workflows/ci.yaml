@@ -47,7 +47,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v2'
       with:
         service: '1046952898526-compute@developer.gserviceaccount.com'
-        image: 'gcr.io/cloudrun/hello'
+        image: 'python-app'
 
     - name: 'Use output'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
