@@ -1,0 +1,34 @@
+name: Build, Push and Scan Docker Image
+
+on: [push]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: malo350stern
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+      - name: Build Docker image
+        run: |
+          docker build -t malo350stern/isen-python:dev-${{ github.sha }} .
+
+      - name: Push Docker image
+        run: |
+          docker push malo350stern/isen-python:dev-${{ github.sha }}
+
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@0.16.0
+        with:
+          image-ref: malo350stern/isen-python:dev-${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+        continue-on-error: true
