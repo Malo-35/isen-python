@@ -50,7 +50,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           service: '1046952898526-compute@developer.gserviceaccount.com'
-          image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleImage'
+          image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleimage'
 
       - name: 'Use output'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
