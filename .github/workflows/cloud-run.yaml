@@ -1,6 +1,7 @@
 on: [push]
 jobs:
   name:
+    needs: build-and-push
     runs-on: ubuntu-latest
 
     permissions:
