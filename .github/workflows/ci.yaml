@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
       
   DeployInGoogle:
-    needs: name
+    needs: [cloud-run]
     runs-on: ubuntu-latest
     
     steps:
