@@ -19,7 +19,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t malo350stern/isen-python:dev-${{ github.sha }} .
+          docker build -t malo350stern/isen-python:dev-${{ github.sha }} -t europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleImage:dev-${{ github.sha }} .
 
       - name: Push Docker image
         run: |
@@ -40,17 +40,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-
-    steps:
-    - uses: 'actions/checkout@v4'
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloudrun@v2'
-      with:
-        service: '1046952898526-compute@developer.gserviceaccount.com'
-        image: 'python-app'
-
-    - name: 'Use output'
-      run: 'curl "${{ steps.deploy.outputs.url }}"'
+    
 
 
   GoogleAuthentification:
@@ -63,3 +53,13 @@ jobs:
           credentials_json: '${{ secrets.REPOSITORYOFPART5 }}' # Replace with the name of your GitHub Actions secret
       - name: yamlsdkl
         run: gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+      
+      - uses: 'actions/checkout@v4'
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: '1046952898526-compute@developer.gserviceaccount.com'
+          image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleImage'
+
+      - name: 'Use output'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
