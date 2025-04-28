@@ -1,4 +1,5 @@
-FROM python:3.9-slim-buster
+# Étape 1 : Build
+FROM python:3.9-slim-buster as build
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
@@ -14,7 +15,7 @@ COPY requirements.txt /requirements.txt
 
 RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
-# Étape 2 : Image finale ultra-légère
+# Étape 2 : Image finale
 FROM gcr.io/distroless/python3-debian12:latest-amd64
 
 COPY --from=build /venv /venv
