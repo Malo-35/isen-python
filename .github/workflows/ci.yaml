@@ -50,7 +50,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           service: 'repositoryofpart5'  # <--- nom réel du service Cloud Run
-          image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleimage'
+          image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5'
           region: 'europe-west1' # ajoute aussi la région si tu veux éviter les incohérences
 
 
