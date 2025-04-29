@@ -49,8 +49,10 @@ jobs:
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          service: '1046952898526-compute@developer.gserviceaccount.com'
+          service: 'repositoryofpart5'  # <--- nom réel du service Cloud Run
           image: 'europe-west1-docker.pkg.dev/sacred-vigil-458212-r5/repositoryofpart5/googleimage'
+          region: 'europe-west1' # ajoute aussi la région si tu veux éviter les incohérences
+
 
       - name: 'Use output'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
